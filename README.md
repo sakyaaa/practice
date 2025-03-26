@@ -1,6 +1,6 @@
 # Practice
 
-## Odin-recipes
+## [Odin-recipes](./odin-recipes/)
 
 In this project, we are going to build a basic recipe website
 
