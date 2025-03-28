@@ -1,0 +1,43 @@
+:root {
+    --dark-bg-color: #1F2937;
+    --white-text-color: #F9FAF8;
+}
+
+body {
+    font-family: 'Roboto';
+    margin: 0;
+}
+
+.header {
+    background-color: var(--dark-bg-color);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15% 0 15%;
+}
+
+.header-right-side {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    gap: 20px;
+}
+
+.hero-main-text {
+    font-weight: 900;
+    font-size: 48px;
+    color: var(--white-text-color)
+}
+
+.header-main-text {
+    font-size: 24px;
+    color: var(--white-text-color)
+}
+
+.header-secondary-text {
+    font-size: 18px;
+    color: #E5E7EB;
+    text-decoration: none;
+}
