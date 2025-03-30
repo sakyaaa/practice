@@ -10,19 +10,15 @@ const Winners = Object.freeze({
     HUMAN: "human",
     COMPUTER: "computer",
     DRAW: "draw",
-    ERROR: "unknown human choice / incorrect input"
 });
 
+// Random choice
 function getComputerChoice() {
     return Choices[Object.keys(Choices)[Math.floor(Math.random() * Object.keys(Choices).length)]];
 }
 
-function getHumanChoice() {
-    return prompt("rock, paper or scissors?").toLowerCase().trim();
-}
-
+// Who win the round logic
 function getRoundWinner(humanChoice, computerChoice) {
-    if (!humanChoice) return Winners.ERROR;
     if (humanChoice == computerChoice) return Winners.DRAW;
 
     switch (humanChoice) {
@@ -38,55 +34,98 @@ function getRoundWinner(humanChoice, computerChoice) {
     }
 }
 
+// Main function
 function playGame() {
     let computerScore = 0;
     let humanScore = 0;
 
-    function playRound() {
+    function playRound(humanChoice) {
         let computerChoice = getComputerChoice();
-        let humanChoice = getHumanChoice();
         let winner = getRoundWinner(humanChoice, computerChoice);
     
         switch (winner) {
             case Winners.COMPUTER:
-                console.log(`Computer win, ${computerChoice} beats ${humanChoice}`);
+                textInfo.textContent = `Computer win, ${computerChoice} beats ${humanChoice}`;
                 computerScore++;
-                return "ok";
+                textComputerScore.textContent = "Computer: " + computerScore;
+
+                if (computerScore >= 5) {
+                    textInfo.textContent += " and computer wins the game!";
+                    buttonRock.disabled = true;
+                    buttonPaper.disabled = true;
+                    buttonScissors.disabled = true;
+                }
+
+                return;
             case Winners.HUMAN:
-                console.log(`Human win, ${humanChoice} beats ${computerChoice}`);
+                textInfo.textContent = `Human win, ${humanChoice} beats ${computerChoice}`;
                 humanScore++;
-                return "ok";
+                textHumanScore.textContent = "Human: " + humanScore;
+
+                if (humanScore >= 5) {
+                    textInfo.textContent += " and human wins the game!";
+                    buttonRock.disabled = true;
+                    buttonPaper.disabled = true;
+                    buttonScissors.disabled = true;
+                }
+
+                return;
             case Winners.DRAW:
-                console.log("Draw, choices are similar, repeating round");
-                return "retry";
-            case Winners.ERROR:
-                console.log(`An error has occurred: ${Winners.ERROR}, repeating round`);
-                return "retry";
+                textInfo.textContent = "Draw, choices are similar, repeating round";
+                return;
         }
     }
 
-    for (let i = 0; i < 5; i++) {
-        var current = playRound();
+    // UI RENDER
 
-        console.log("Round " + (i + 1));
-        console.log("computer: " + computerScore);
-        console.log("human: " + humanScore);
+    // BUTTONS
+    const buttonRock = document.createElement("button");
+    const buttonPaper = document.createElement("button");
+    const buttonScissors = document.createElement("button");
 
-        switch (current) {
-            case "ok":
-                continue;
-            case "retry":
-                i--;
-                continue;
-        }
-    }
+    buttonRock.innerHTML = "<div class=\"text\">Rock</div>";
+    buttonPaper.innerHTML = "<div class=\"text\">Paper</div>";
+    buttonScissors.innerHTML = "<div class=\"text\">Scissors</div>";
 
-    if (computerScore > humanScore) console.log("Computer wins the game!");
-    else if (computerScore < humanScore) console.log("Human wins the game!");
+    buttonRock.onclick = () => { playRound("rock"); }
+    buttonPaper.onclick = () => { playRound("paper"); }
+    buttonScissors.onclick = () => { playRound("scissors"); }
+
+    // TEXT
+    const textInfo = document.createElement("p");
+    const textComputerScore = document.createElement("p");
+    const textHumanScore = document.createElement("p");
+
+    textInfo.classList.add("text");
+    textComputerScore.classList.add("text");
+    textHumanScore.classList.add("text");
+
+    textInfo.textContent = "Make a choice";
+    textComputerScore.textContent = "Computer: " + computerScore;
+    textHumanScore.textContent = "Human: " + humanScore;
+
+    // OUTPUT
+    const outputText = document.getElementById("script-text");
+    outputText.appendChild(textInfo);
+    outputText.appendChild(textComputerScore);
+    outputText.appendChild(textHumanScore);
+
+    const outputButton = document.getElementById("script-buttons");
+    outputButton.appendChild(buttonRock);
+    outputButton.appendChild(buttonPaper);
+    outputButton.appendChild(buttonScissors);
 }
 
-function main() {
-    while (true) playGame();
+// Used when game played earlier
+function newGame() {
+    const outputText = document.getElementById("script-text");
+    const outputButton = document.getElementById("script-buttons");
+
+    // Clearing UI
+    outputText.innerHTML = "";
+    outputButton.innerHTML = "";
+
+    playGame();
 }
 
-main()
+playGame();
