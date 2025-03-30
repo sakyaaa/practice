@@ -1,0 +1,32 @@
+body {
+    background-color: #050507;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+button {
+    background-color: #050507;
+    border: solid springgreen 3px;
+    border-radius: 1em;
+    cursor: pointer;
+}
+
+.text {
+    padding: 16px;
+    font-family: 'Segoe UI', Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: springgreen;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+}

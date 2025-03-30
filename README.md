@@ -9,3 +9,7 @@ The website will consist of a main index page which will have links to a few rec
 ## [Odin-landing-page](./odin-landing-page/)
 
 For this project we’ll be creating an entire web page from a provided design.
+
+## [Odin-rock-paper-scissors](./odin-rock-paper-scissors/)
+
+For this project, we'll create the game Rock Paper Scissors. This game will be played entirely in the console.
