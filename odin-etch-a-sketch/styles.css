@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    background-color: #050507;
+}
+
+#main-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: stretch;
+    width: 80vh;
+    height: 80vh;
+    border: solid red 1px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    align-items: stretch;
+    flex: 1;
+}
+
+.item {
+    background-color: #050507;
+    flex: 1;
+    cursor: pointer;
+}
+
+.item:hover {
+    background-color: white;
+}
