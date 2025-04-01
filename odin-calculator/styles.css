@@ -1,0 +1,73 @@
+:root {
+    --bg-dark-color: #050507;
+}
+
+body {
+    background-color: var(--bg-dark-color);
+    font-family: 'Segoe UI', Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+h1 {
+    margin: 22px;
+}
+
+textarea {
+    width: 30vw;
+    resize: none;
+}
+
+td button {
+    background-color: var(--bg-dark-color);
+    border: solid white 2px;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+td button .button-text {
+    color: white;
+    font-size: 16px;
+}
+
+#main {
+    padding: 20vh 0 20vh 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.upper {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    background-color: white;
+    border: solid white 2px;
+    height: 18px;
+}
+
+.upper textarea {
+    background-color: var(--bg-dark-color);
+    color: white;
+    border: none;
+    padding: 1px 4px 1px 4px;
+    margin: 0;
+    height: 16px;
+}
+
+.upper button {
+    background-color: var(--bg-dark-color);
+    color: white;
+    border: none;
+    padding: 1px 4px 1px 4px;
+    margin: 0;
+    height: 18px;
+    cursor: pointer;
+}

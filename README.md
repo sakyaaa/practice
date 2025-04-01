@@ -19,3 +19,9 @@ For this project, we'll create the game Rock Paper Scissors. This game will be p
 In this project, we'll be creating a pretty neat toy to flex your DOM manipulation skills.
 
 We're going to build a browser version of something between a sketchpad and an Etch-A-Sketch.
+
+## [Odin-calculator](./odin-calculator/)
+
+Our final foundations project is going to combine everything we’ve learned so far.
+
+We are going to make an on-screen calculator using JavaScript, HTML, and CSS.

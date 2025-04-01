@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Practice - Odin Calculator</title>
+        <link href="./styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <a href=".."><h1>Odin-calculator</h1></a>
+        <div id="main">
+            <div class="upper">
+                <textarea id="result" rows="1" placeholder="Your entered formula" readonly></textarea>
+                <button id="operation-backspace"><div class="button-text"><-</div></button>
+            </div>
+            <div class="table-grid">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><button id="digit-7"><div class="button-text">7</div></button></td>
+                            <td><button id="digit-8"><div class="button-text">8</div></button></td>
+                            <td><button id="digit-9"><div class="button-text">9</div></button></td>
+                            <td><button id="operation-divide"><div class="button-text">/</div></button></td>
+                        </tr>
+                        <tr>
+                            <td><button id="digit-4"><div class="button-text">4</div></button></td>
+                            <td><button id="digit-5"><div class="button-text">5</div></button></td>
+                            <td><button id="digit-6"><div class="button-text">6</div></button></td>
+                            <td><button id="operation-multiply"><div class="button-text">*</div></button></td>
+                        </tr>
+                        <tr>
+                            <td><button id="digit-1"><div class="button-text">1</div></button></td>
+                            <td><button id="digit-2"><div class="button-text">2</div></button></td>
+                            <td><button id="digit-3"><div class="button-text">3</div></button></td>
+                            <td><button id="operation-minus"><div class="button-text">-</div></button></td>
+                        </tr>
+                        <tr>
+                            <td><button id="digit-0"><div class="button-text">0</div></button></td>
+                            <td><button id="digit-dot"><div class="button-text">.</div></button></td>
+                            <td><button id="operation-equals"><div class="button-text">=</div></button></td>
+                            <td><button id="operation-plus"><div class="button-text">+</div></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <script src="./script.js"></script>
+    </body>
+</html>
