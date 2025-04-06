@@ -26,7 +26,7 @@ class TicTacToe
     puts "\n"
     @board.each_with_index do |row, i|
       puts " #{row[0]} | #{row[1]} | #{row[2]} "
-      puts '-----------' unless i == 2
+      puts '---+---+---' unless i == 2
     end
     puts "\n"
   end
@@ -79,10 +79,8 @@ class TicTacToe
   end
 
   def check_diagonals
-    main_diagonal = @board[0][0] == @current_player && @board[1][1] == @current_player && @board[2][2] == @current_player
-    anti_diagonal = @board[0][2] == @current_player && @board[1][1] == @current_player && @board[2][0] == @current_player
-
-    main_diagonal || anti_diagonal
+    (@board[0][0] == @current_player && @board[1][1] == @current_player && @board[2][2] == @current_player) ||
+      (@board[0][2] == @current_player && @board[1][1] == @current_player && @board[2][0] == @current_player)
   end
 
   def draw?
