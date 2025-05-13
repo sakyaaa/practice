@@ -17,12 +17,15 @@ def caesar_cipher(string, shift, result = '')
   result
 end
 
-loop do
-  print 'Enter string: '
-  string = gets.chomp
+# Only for interactive launch
+if __FILE__ == $PROGRAM_NAME
+  loop do
+    print 'Enter string: '
+    string = gets.chomp
 
-  print 'Enter shift: '
-  shift = gets.chomp
+    print 'Enter shift: '
+    shift = gets.chomp
 
-  puts caesar_cipher(string, shift)
+    puts caesar_cipher(string, shift)
+  end
 end
