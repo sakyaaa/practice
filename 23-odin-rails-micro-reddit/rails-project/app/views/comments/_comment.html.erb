@@ -1,0 +1,13 @@
+<div id="<%= dom_id comment %>">
+  <h4>User: <%= comment.user.email %></h4>
+  <p><strong>Comment: </strong><%= comment.body %></p>
+
+  <% if policy(comment).update? %>
+    <p>
+      <%= link_to "Delete", [comment.post, comment], data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+      } %>
+    </p>
+  <% end %>
+</div>

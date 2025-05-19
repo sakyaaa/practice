@@ -1,0 +1,28 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @post %>
+
+<div>
+  <%= link_to "Back to posts", posts_path %>
+
+  <% if policy(@post).update? %>
+    <p>
+      <%= link_to "Edit", edit_post_path(@post) %> |
+      <%= link_to "Delete", post_path(@post), data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+      } %>
+    </p>
+  <% end %>
+</div>
+
+<h2>Comments</h2>
+<%= render @post.comments %>
+
+<% if policy(Comment).new? %>
+  <h2>Add a comment:</h2>
+
+  <%= render "comments/form", post: @post %>
+<% else %>
+  <h2>Please log in to leave comments</h2>
+<% end %>
