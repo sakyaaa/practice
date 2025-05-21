@@ -1,0 +1,25 @@
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+  <% end %>
+
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title mb-4"><%= @kitten.name %></h1>
+      
+      <div class="kitten-details">
+        <p><strong>Age:</strong> <%= @kitten.age %> years</p>
+        <p><strong>Cuteness Level:</strong> <%= "⭐" * @kitten.cuteness %></p>
+        <p><strong>Softness Level:</strong> <%= "🪶" * @kitten.softness %></p>
+      </div>
+
+      <div class="mt-4">
+        <%= link_to "Edit Kitten", edit_kitten_path(@kitten), class: "btn btn-warning" %>
+        <%= link_to "Back to Kittens", kittens_path, class: "btn btn-secondary" %>
+        <%= button_to "Delete Kitten", @kitten, method: :delete, 
+            class: "btn btn-danger", 
+            data: { confirm: "Are you sure you want to remove this kitten?" } %>
+      </div>
+    </div>
+  </div>
+</div>

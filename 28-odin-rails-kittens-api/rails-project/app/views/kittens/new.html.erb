@@ -1,0 +1,16 @@
+<% content_for :title, "Add New Kitten" %>
+
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-body">
+      <h1 class="card-title mb-4">Add New Kitten</h1>
+      <%= render "form", kitten: @kitten %>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<div>
+  <%= link_to "Back to kittens", kittens_path %>
+</div>

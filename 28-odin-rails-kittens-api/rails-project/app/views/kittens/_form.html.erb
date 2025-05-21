@@ -1,0 +1,40 @@
+<%= form_with(model: kitten, class: "needs-validation") do |form| %>
+  <% if kitten.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(kitten.errors.count, "error") %> prevented this kitten from being saved:</h4>
+      <ul>
+        <% kitten.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter kitten's name" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :age, class: "form-label" %>
+    <%= form.number_field :age, class: "form-control", min: 0, max: 30, placeholder: "Enter age in years" %>
+    <div class="form-text">Age should be between 0 and 30 years</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :cuteness, class: "form-label" %>
+    <%= form.number_field :cuteness, class: "form-control", min: 1, max: 10, placeholder: "Rate cuteness (1-10)" %>
+    <div class="form-text">Rate from 1 (least cute) to 10 (most cute)</div>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :softness, class: "form-label" %>
+    <%= form.number_field :softness, class: "form-control", min: 1, max: 10, placeholder: "Rate softness (1-10)" %>
+    <div class="form-text">Rate from 1 (least soft) to 10 (most soft)</div>
+  </div>
+
+  <div class="mt-4">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", kittens_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>

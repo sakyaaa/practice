@@ -1,0 +1,35 @@
+<% content_for :title, "Kittens" %>
+
+<div class="container mt-4">
+  <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+  <% end %>
+
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Our Adorable Kittens</h1>
+    <%= link_to "Add New Kitten", new_kitten_path, class: "btn btn-primary" %>
+  </div>
+
+  <div class="row">
+    <% @kittens.each do |kitten| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title"><%= kitten.name %></h3>
+            <p class="card-text">
+              <strong>Age:</strong> <%= kitten.age %> years<br>
+              <strong>Cuteness:</strong> <%= "⭐" * kitten.cuteness %><br>
+              <strong>Softness:</strong> <%= "🪶" * kitten.softness %>
+            </p>
+            <div class="btn-group">
+              <%= link_to "View", kitten, class: "btn btn-info" %>
+              <%= link_to "Edit", edit_kitten_path(kitten), class: "btn btn-warning" %>
+              <%= button_to "Delete", kitten, method: :delete, class: "btn btn-danger", 
+                  data: { confirm: "Are you sure you want to remove this kitten?" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
