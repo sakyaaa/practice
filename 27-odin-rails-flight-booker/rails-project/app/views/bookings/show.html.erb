@@ -1,0 +1,34 @@
+<h1>Booking Confirmation</h1>
+
+<div class="booking-details">
+  <h2>Flight Details</h2>
+  <p>
+    <strong>From:</strong> <%= @booking.flight.departing_airport.code %>
+  </p>
+  <p>
+    <strong>To:</strong> <%= @booking.flight.arriving_airport.code %>
+  </p>
+  <p>
+    <strong>Date:</strong> <%= @booking.flight.start.strftime("%B %d, %Y") %>
+  </p>
+  <p>
+    <strong>Duration:</strong> <%= @booking.flight.duration %> minutes
+  </p>
+</div>
+
+<div class="passenger-details">
+  <h2>Passenger Information</h2>
+  <% @booking.passengers.each do |passenger| %>
+    <div class="passenger">
+      <h3>Passenger</h3>
+      <p>
+        <strong>Name:</strong> <%= passenger.name %>
+      </p>
+      <p>
+        <strong>Email:</strong> <%= passenger.email %>
+      </p>
+    </div>
+  <% end %>
+</div>
+
+<%= link_to "Search for another flight", root_path, class: "btn btn-secondary" %> 

@@ -1,0 +1,94 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Search Flights" %>
+
+<div class="container">
+  <h1 class="mb-4">Search Flights</h1>
+
+  <%= form_with url: flights_path, method: :get, local: true, class: "search-form mb-4" do |f| %>
+    <div class="row g-3">
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :departure_code, "From", class: "form-label" %>
+          <%= f.select :departure_code, 
+                      @airports,
+                      { include_blank: "Any departure airport", selected: params[:departure_code] },
+                      { class: "form-select" } %>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :arrival_code, "To", class: "form-label" %>
+          <%= f.select :arrival_code, 
+                      @airports,
+                      { include_blank: "Any arrival airport", selected: params[:arrival_code] },
+                      { class: "form-select" } %>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :date, "Date", class: "form-label" %>
+          <%= f.select :date, 
+                      @dates,
+                      { include_blank: "Any date", selected: params[:date] },
+                      { class: "form-select" } %>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :passengers, "Passengers", class: "form-label" %>
+          <%= f.select :passengers, 
+                      @passengers,
+                      { include_blank: "Select number of passengers", selected: params[:passengers] },
+                      { class: "form-select" } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-3">
+      <%= f.submit "Search Flights", class: "btn btn-primary" %>
+      <%= link_to "Clear Filters", flights_path, class: "btn btn-outline-secondary ms-2" %>
+    </div>
+  <% end %>
+
+  <% if @flights.any? %>
+    <div class="card">
+      <div class="card-header">
+        <h2 class="h4 mb-0">Available Flights</h2>
+      </div>
+      <div class="card-body">
+        <%= form_with url: new_booking_path, method: :get, local: true do |f| %>
+          <%= f.hidden_field :passengers, value: params[:passengers] %>
+          
+          <div class="table-responsive">
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Select</th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Date</th>
+                  <th>Duration</th>
+                </tr>
+              </thead>
+              <tbody>
+                <%= render partial: "flight", collection: @flights %>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-3">
+            <%= f.submit "Continue to Booking", class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% elsif params[:departure_code].present? || params[:arrival_code].present? || params[:date].present? %>
+    <div class="alert alert-info">
+      No flights found matching your criteria. Please try a different search.
+    </div>
+  <% end %>
+</div>

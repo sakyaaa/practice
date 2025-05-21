@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  departing_flights: one
+  arriving_flights: one
+  start: 2025-05-21 12:58:38
+  duration: 2025-05-21 12:58:38
+
+two:
+  departing_flights: two
+  arriving_flights: two
+  start: 2025-05-21 12:58:38
+  duration: 2025-05-21 12:58:38
