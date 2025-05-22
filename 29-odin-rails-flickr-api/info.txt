@@ -1,0 +1,1 @@
+Flickr: 'In order to mitigate abuse, API key creation is currently disabled for free accounts. API key creation is available to all Flickr PRO subscribers.'
