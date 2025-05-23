@@ -1,0 +1,7 @@
+<%= turbo_stream.replace dom_id(@likable) do %>
+  <% if @likable.is_a?(Post) %>
+    <%= render "posts/post", post: @likable %>
+  <% else %>
+    <%= render "comments/comment", comment: @likable %>
+  <% end %>
+<% end %> 

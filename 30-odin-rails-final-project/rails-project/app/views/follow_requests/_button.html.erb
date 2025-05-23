@@ -1,0 +1,12 @@
+<% if current_user != user %>
+    <% existing_request = FollowRequest.where(follower: current_user, source: user).last %>
+    <% if existing_request&.status == 'pending' %>
+        <button class="btn btn-secondary" disabled>Request Sent</button>
+    <% elsif existing_request&.status == 'accepted' %>
+        <button class="btn btn-success" disabled>Following</button>
+    <% else %>
+        <%= button_to "Follow", follow_requests_path(follow_request: { source_id: user.id }), 
+            class: "btn btn-primary",
+            data: { turbo_method: :post } %>
+    <% end %>
+<% end %>

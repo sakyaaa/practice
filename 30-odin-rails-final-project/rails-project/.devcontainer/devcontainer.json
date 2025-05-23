@@ -1,0 +1,29 @@
+{
+    "name": "dev",
+    "dockerComposeFile": "../docker-compose.yml",
+    "service": "web",
+    "workspaceFolder": "/app",
+    "shutdownAction": "stopCompose",
+    "customizations": {
+        "ruby": {
+            "editor.insertSpaces": true,
+            "editor.tabSize": 2
+        },
+        "vscode": {
+            "extensions": [
+                "koichisasada.vscode-rdbg",
+                "misogi.ruby-rubocop",
+                "hoovercj.ruby-linter",
+                "miguel-savignano.ruby-symbols",
+                "SarahRidge.vscode-ruby-syntax",
+                "kaiwood.endwise",
+                "mikestead.dotenv",
+                "cweijan.vscode-database-client2"
+            ],
+            "settings": {
+                "ruby.rubocop.executePath": "/app/bin/",
+                "ruby.linter.executablePath": "/app/bin/"
+            }
+        }
+    }
+}

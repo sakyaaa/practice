@@ -1,0 +1,38 @@
+<div id="<%= dom_id comment %>" class="comment-card">
+  <div class="comment-header">
+    <p class="comment-author">Comment by <%= comment.user.name %></p>
+  </div>
+
+  <div class="comment-body">
+    <%= comment.body %>
+  </div>
+
+  <div class="comment-actions">
+    <div class="d-flex gap-2 align-items-center">
+      <% if current_user %>
+        <% if current_user.likes.exists?(likable: comment) %>
+          <%= button_to post_comment_like_path(@post, comment, comment.likes.find_by(user: current_user)), 
+              method: :delete, 
+              class: "btn btn-sm btn-outline-danger",
+              data: { turbo: true } do %>
+            <i class="bi bi-heart-fill"></i> <%= comment.likes.count %>
+          <% end %>
+        <% else %>
+          <%= button_to post_comment_likes_path(comment.post, comment), 
+              class: "btn btn-sm btn-outline-danger",
+              data: { turbo: true } do %>
+            <i class="bi bi-heart"></i> <%= comment.likes.count %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <span class="btn btn-sm btn-outline-danger disabled">
+          <i class="bi bi-heart"></i> <%= comment.likes.count %>
+        </span>
+      <% end %>
+
+      <% if policy(comment).destroy? %>
+        <%= button_to "Delete", post_comment_path(@post, comment), method: :delete, class: "btn btn-sm btn-danger", data: { confirm: "Are you sure?" } %>
+      <% end %>
+    </div>
+  </div>
+</div>

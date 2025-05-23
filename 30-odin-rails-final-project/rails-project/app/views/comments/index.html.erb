@@ -1,0 +1,18 @@
+<% content_for :title, "Comments" %>
+
+<div class="container mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Comments</h1>
+    <% if policy(Comment).create? %>
+      <%= link_to "New Comment", new_comment_path, class: "btn btn-primary" %>
+    <% end %>
+  </div>
+
+  <div id="comments" class="row g-4">
+    <% @comments.each do |comment| %>
+      <div class="col-md-6">
+        <%= render comment %>
+      </div>
+    <% end %>
+  </div>
+</div>

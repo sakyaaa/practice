@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: db
+  username: <%= ENV.fetch('POSTGRES_USER') %>
+  password: <%= ENV.fetch('POSTGRES_PASSWORD') %>
+
+development:
+  <<: *default
+  database: rails_project_development
+
+test:
+  <<: *default
+  database: rails_project_test
+
+stage:
+  <<: *default
+  database: rails_project_stage
+
+production:
+  <<: *default
+  database: rails_project_production

@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h1>Pending Follow Requests</h1>
+
+  <div id="follow-requests-container" class="mb-4"></div>
+
+  <% if @pending_requests.any? %>
+    <div class="row">
+      <% @pending_requests.each do |request| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to request.follower.name, user_path(request.follower) %></h5>
+              <p class="card-text">
+                <%= request.follower.email %>
+              </p>
+              <div class="d-flex gap-2">
+                <%= button_to "Accept", accept_follow_request_path(request), 
+                    class: "btn btn-success",
+                    data: { turbo_method: :post } %>
+                <%= button_to "Reject", reject_follow_request_path(request), 
+                    class: "btn btn-danger",
+                    data: { turbo_method: :post } %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">No pending follow requests.</p>
+  <% end %>
+</div>

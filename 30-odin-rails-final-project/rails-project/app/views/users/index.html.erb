@@ -1,0 +1,21 @@
+<div class="container mt-4">
+  <h1>Users</h1>
+  
+  <div id="follow-requests-container" class="mb-4"></div>
+
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-md-4 mb-4">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title"><%= link_to user.name, user %></h3>
+            <p class="card-text">
+              <%= user.email %>
+            </p>
+            <%= render "follow_requests/button", user: user %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,18 @@
+body, main, nav, footer, .card, .modal-content, .dropdown-menu, .form-control, .container, .row, .col, .list-group-item {
+  background-color: #181a1b !important;
+  color: #f8f9fa;
+}
+
+/* Ensure links and buttons are still visible */
+a, .btn, .nav-link {
+  background-color: #181a1b;
+  color: #f8f9fa;
+}
+
+.alert {
+  color: red;
+}
+
+.notice {
+  color: green;
+}

@@ -1,0 +1,43 @@
+<div id="<%= dom_id post %>" class="post-card">
+  <div class="post-header">
+    <h2 class="post-title"><%= post.title %></h2>
+    <p class="post-author">Posted by <%= post.user.name %></p>
+  </div>
+
+  <div class="post-body">
+    <%= post.body %>
+  </div>
+
+  <div class="post-actions">
+    <div class="d-flex gap-2 align-items-center">
+      <% if current_user %>
+        <% if current_user.likes.exists?(likable: post) %>
+          <%= button_to post_like_path(post, post.likes.find_by(user: current_user)), 
+              method: :delete, 
+              class: "btn btn-sm btn-outline-danger",
+              data: { turbo: true } do %>
+            <i class="bi bi-heart-fill"></i> <%= post.likes.count %>
+          <% end %>
+        <% else %>
+          <%= button_to post_likes_path(post), 
+              class: "btn btn-sm btn-outline-danger",
+              data: { turbo: true } do %>
+            <i class="bi bi-heart"></i> <%= post.likes.count %>
+          <% end %>
+        <% end %>
+      <% else %>
+        <span class="btn btn-sm btn-outline-danger disabled">
+          <i class="bi bi-heart"></i> <%= post.likes.count %>
+        </span>
+      <% end %>
+
+      <%= link_to "View", post, class: "btn btn-info" %>
+      <% if policy(post).edit? %>
+        <%= link_to "Edit", edit_post_path(post), class: "btn btn-warning" %>
+      <% end %>
+      <% if policy(post).destroy? %>
+        <%= button_to "Delete", post, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?" } %>
+      <% end %>
+    </div>
+  </div>
+</div>

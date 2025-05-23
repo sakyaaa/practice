@@ -1,0 +1,81 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card mb-4">
+        <div class="card-body text-center">
+          <%= image_tag @user.avatar_url, class: "rounded-circle mb-3", style: "width: 150px; height: 150px; object-fit: cover;" %>
+          
+          <% if policy(@user).upload_avatar? %>
+            <%= form_with(url: upload_avatar_user_path(@user), method: :patch, local: true, class: "mb-3", multipart: true) do |f| %>
+              <div class="mb-3">
+                <%= f.label :avatar, "Update Profile Picture", class: "form-label" %>
+                <%= f.file_field :avatar, name: "user[avatar]", class: "form-control", accept: "image/jpeg,image/png,image/gif" %>
+              </div>
+              <%= f.submit "Update Picture", class: "btn btn-primary" %>
+            <% end %>
+          <% end %>
+
+          <h2 class="card-title"><%= @user.name %></h2>
+          <p class="card-text"><%= @user.email %></p>
+          
+          <%= render "follow_requests/button", user: @user %>
+        </div>
+      </div>
+
+      <% if policy(current_user).update? %>
+        <div class="card mb-4">
+          <div class="card-body">
+            <h3 class="card-title">Follow Requests</h3>
+            <% pending_requests = current_user.follow_requests_as_source.where(status: 'pending') %>
+            <% if pending_requests.any? %>
+              <div class="list-group">
+                <% pending_requests.each do |request| %>
+                  <div class="list-group-item">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h3 class="mb-1"><%= link_to request.follower.name, user_path(request.follower) %></h3>
+                        <small class="text-muted"><%= request.follower.email %></small>
+                      </div>
+                      <div class="btn-group">
+                        <%= button_to "Accept", accept_follow_request_path(request), 
+                            class: "btn btn-sm btn-success",
+                            data: { turbo_method: :post } %>
+                        <%= button_to "Reject", reject_follow_request_path(request), 
+                            class: "btn btn-sm btn-danger",
+                            data: { turbo_method: :post } %>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% else %>
+              <p class="text-muted mb-0">No pending follow requests.</p>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col-md-8">
+      <h3>Posts</h3>
+      <% if @posts.any? %>
+        <% @posts.each do |post| %>
+          <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title"><%= post.title %></h5>
+              <p class="card-text"><%= post.body %></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Posted <%= time_ago_in_words(post.created_at) %> ago</small>
+                <div>
+                  <%= link_to "View", post_path(post), class: "btn btn-sm btn-outline-primary" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <p class="text-muted">No posts yet.</p>
+      <% end %>
+    </div>
+  </div>
+</div>
