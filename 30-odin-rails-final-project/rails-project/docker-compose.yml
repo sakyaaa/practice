@@ -1,6 +1,6 @@
 services:
   app: &backend
-    build: 
+    build:
       context: .
       target: build
     entrypoint: sh ./docker-entrypoint.sh
@@ -10,15 +10,13 @@ services:
       - .:/app:cached
     depends_on:
       - db
-    environment:
-      - RAILS_ENV=development
-    tty: true
-    stdin_open: true
 
   web:
     <<: *backend
     command: sleep infinity
     restart: always
+    ports:
+      - 3000:3000
 
   db:
     image: postgres:16.3
